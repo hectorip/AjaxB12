@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AJAX</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+
+</head>
+<body>
+  <h1> AJAX </h1>
+
+  Texto: <input type="text" id="mi_texto">
+  Text2: <input type="text" id="mi_texto2">
+  <div id="res"></div>
+  <img  id="img_res">
+
+  <button id="boton_datos"> Traer datos </button>
+
+  <script
+  src="https://code.jquery.com/jquery-3.1.1.js"
+  integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+  crossorigin="anonymous"></script>
+
+  <script>
+
+    function traer_datos(){
+      // var api_key = "dc6zaTOxFJmzC"
+      var url = "http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=";
+      var tag = "kittens";
+      $.getJSON(url+tag, {}, function(resultado){
+        var img_url = resultado.data.image_url;
+        console.log(img_url);
+        $("#img_res").attr('src', img_url);
+      });
+    }
+
+    function copiar_valor(e){
+          console.log(e.target);
+          var texto = $(e.target).val();
+          $("#res").html(texto);
+        }
+
+
+    $(function(){
+      $("#boton_datos").click(traer_datos);
+
+      // $("#mi_texto").on('input', mi_funcion);
+
+      // $("#mi_texto").input(function(){
+      $("#mi_texto").on('input', copiar_valor);
+      $("#mi_texto2").on('input', copiar_valor);
+
+    });
+
+
+  </script>
+</body>
+</html>
