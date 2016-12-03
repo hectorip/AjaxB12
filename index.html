@@ -16,6 +16,7 @@
   <img  id="img_res">
 
   <button id="boton_datos"> Traer datos </button>
+  <button id="boton_avatar"> Traer avatar </button>
 
   <script
   src="https://code.jquery.com/jquery-3.1.1.js"
@@ -24,8 +25,8 @@
 
   <script>
 
+    // Event handlers
     function traer_datos(){
-      // var api_key = "dc6zaTOxFJmzC"
       var url = "http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=";
       var tag = "kittens";
       $.getJSON(url+tag, {}, function(resultado){
@@ -41,16 +42,13 @@
           $("#res").html(texto);
         }
 
-
     $(function(){
+      // Event Listeners
       $("#boton_datos").click(traer_datos);
+      $("#boton_avatar").click(get_avatar);
 
-      // $("#mi_texto").on('input', mi_funcion);
-
-      // $("#mi_texto").input(function(){
       $("#mi_texto").on('input', copiar_valor);
       $("#mi_texto2").on('input', copiar_valor);
-
     });
 
 
